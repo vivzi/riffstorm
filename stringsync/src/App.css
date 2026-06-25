@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 :root {
-  font-family: "Satoshi", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Geist", system-ui, sans-serif;
 
   --bg: #111011;
   --primary: #721990;
@@ -47,7 +47,7 @@ body {
     ),
     url("./assets/background.png");
 
-  background-size: cover, 800px auto;
+  background-size: cover, 1080px auto;
   background-position: center, center;
   background-repeat: no-repeat, repeat;
   

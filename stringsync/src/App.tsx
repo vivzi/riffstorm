@@ -1,6 +1,14 @@
+import { useState } from 'react'
+import Tuner from './Tuner'
 import './App.css'
 
 function App() {
+  const [screen, setScreen] = useState<'main' | 'tuner'>('main')
+
+  if (screen === 'tuner') {
+    return <Tuner onBack={() => setScreen('main')} />
+  }
+
   return (
     <main className="app">
       <section className="hero">
@@ -13,17 +21,20 @@ function App() {
         </p>
 
         <div className="actions">
-          <button className="secondary">Start Practice</button>
-          <button className="primary">Open Tuner</button>
-        </div>
+          <button className="secondary">
+            Start Practice
+          </button>
 
-        <div className="panel">
-          <h2>Current Note</h2>
-          <div className="note">E2</div>
-          <p className="status">Waiting for microphone input...</p>
+          <button
+            className="primary"
+            onClick={() => setScreen('tuner')}
+          >
+            Open Tuner
+          </button>
         </div>
       </section>
     </main>
   )
 }
+
 export default App
