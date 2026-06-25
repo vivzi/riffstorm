@@ -12,12 +12,12 @@ function App() {
   return (
     <main className="app">
       <section className="hero">
-        <p className="eyebrow">REAL GUITAR • REAL FEEDBACK</p>
+        <p className="eyebrow">GUITAR HERO FOR REAL GUITARISTS</p>
 
         <h1>RiffStorm</h1>
 
         <p className="subtitle">
-          Turn your real guitar into a rhythm practice game.
+          Turn your guitar into a rhythm practice game.
         </p>
 
         <div className="actions">
