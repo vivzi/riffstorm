@@ -14,7 +14,7 @@ function App() {
       <section className="hero">
         <p className="eyebrow">REAL GUITAR • REAL FEEDBACK</p>
 
-        <h1>StringSync</h1>
+        <h1>RiffStorm</h1>
 
         <p className="subtitle">
           Turn your real guitar into a rhythm practice game.

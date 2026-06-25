@@ -8,7 +8,7 @@ function Tuner({ onBack }: TunerProps) {
   return (
     <main className="app">
       <section className="hero">
-        <h1>StringSync Tuner</h1>
+        <h1>RiffStorm Tuner</h1>
 
         <div className="panel">
           <h2>Current Note</h2>
