@@ -296,6 +296,7 @@ nav button:hover {
     border: 3px solid #fff;
     padding: 20px 30px;
     cursor: pointer;
+    box-shadow: 4px 4px #110111;
 }
 
 .primaryButton:hover {
@@ -579,4 +580,172 @@ nav button:hover {
 .tunerCents {
     font-family: 'JetBrains Mono', sans-serif;
     font-size: 16px;
+}
+
+/* <<<PRACTICE>>> */
+
+.tabBarSection {
+    width: 100%;
+    gap: 10px;
+    padding: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3A3A40;
+}
+
+.tabBarSection a {
+    position: relative;
+    color: #fff;
+    font-family: 'JetBrains Mono', sans-serif;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    cursor: pointer;
+}
+
+.tabBarSection a::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    transition: 0.25s ease;
+}
+
+.tabBarSection a:hover {
+    color: #d5c917;
+}
+
+.tabBarSection a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.songPracticeSelection {
+    width: 100%;
+    height: 876px;
+    padding: 50px;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gridHeader {
+    gap: 20px;
+}
+
+.practiceTitle {
+    color: #fff;
+    font-size: 40px;
+    padding-top: 20px;
+}
+
+.gridContainer {
+    width: 100%;
+    height: 540px;
+    padding-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 624px);
+    justify-content: center;
+    align-items: center;
+    column-gap: 60px;
+    row-gap: 60px;
+    padding: 20px;
+}
+
+.gridBox {
+    width: 624px;
+    height: 289px;
+    padding-top: 5px;
+    background-color: #2b282c;
+    border: 3px solid #fff;
+    border-radius: 2px;
+}
+
+.gridSongNumber {
+    background-color: #d5c917;
+    font-size: 20px;
+    padding: 3px;
+    margin-top: -5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    max-width: 47px;
+    max-height: 31px;
+    align-items: flex-end;
+}
+
+.gridSongName {
+    padding: 20px;
+    padding-top: 15px;
+    font-size: 26px;
+    color: #d5c917;
+}
+
+.metadataList {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.metadataFrame {
+    border-bottom: 1px solid #3A3A40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #3A3A40;
+    height: 30px;
+}
+
+.metadataFrameLabel {
+    color: #fff;
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 14px;
+}
+
+.metadataFrameBPM {
+    color: #fff;
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 14px;
+}
+
+.metadataFrameDifficultyBeginner {
+    background-color: #d5c917;
+    font-family: 'JetBrains Mono', sans-serif;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+.metadataFrameDifficultyIntermediate {
+    background-color: #A12ECB;
+    font-family: 'JetBrains Mono', sans-serif;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+.metadataFrameDifficultyAdvanced {
+    background-color: #FF3E3E;
+    font-family: 'JetBrains Mono', sans-serif;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+.gridPracticeButton {
+    background-color: #d5c917;
+    color: #110111;
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 20px;
+    border: 3px solid #fff;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    box-shadow: 4px 4px #110111;
+}
+
+.gridPracticeButton:hover {
+    transform: scale(1.05);
 }

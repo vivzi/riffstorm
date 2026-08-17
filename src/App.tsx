@@ -1,6 +1,7 @@
 import './App.css'
 import Tuner from './Tuner'
 import Footer from './Footer'
+import Practice from './Practice'
 import hero from './assets/hero.png'
 import packageJson from '../package.json'
 import { useState } from 'react'
@@ -13,6 +14,10 @@ function App() {
     return (
       <Tuner />
     )
+  } else if (window === 'practice') {
+    return (
+      <Practice />
+    )
   }
 
   return (
@@ -23,7 +28,7 @@ function App() {
         <div className='navLinks'>
           <a onClick={() => setWindow('tuner')}>TUNER</a>
           <a>SETTINGS</a>
-          <button>PRACTICE NOW</button>
+          <button onClick={() => setWindow('practice')}>PRACTICE NOW</button>
         </div>
       </nav>
       <div className='hero'>
