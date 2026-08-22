@@ -30,14 +30,14 @@ export const riffs: Riff[] = [
         bpm: 45,
         beatsPerMeasure: 4,
         notes: [
-            { string: 6, fret: 1, gapBeats: 1 },
-            { string: 6, fret: 1, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
             { string: 6, fret: 3, gapBeats: 1 },
             { string: 6, fret: 5, gapBeats: 2},
-            { string: 6, fret: 1, gapBeats: 1 },
-            { string: 6, fret: 1, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
             { string: 6, fret: 5, gapBeats: 1 },
-            { string: 6, fret: 4, gapBeats: 2}
+            { string: 6, fret: 3, gapBeats: 2}
         ]
     },
     {
@@ -88,7 +88,7 @@ export const riffs: Riff[] = [
         id: 'phygrian-waltz',
         title: 'PHYGRIAN WALTZ',
         difficulty: 'INTERMEDIATE',
-        bpm: 200,
+        bpm: 240,
         beatsPerMeasure: 3,
         notes: [
             { string: 6, fret: 4, gapBeats: 1 },
