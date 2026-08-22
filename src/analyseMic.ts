@@ -1,4 +1,7 @@
 import { PitchDetector } from 'pitchy'
+import { type GuitarString, type RiffNote } from './data/riffs'
+
+// --- MIC ANALYSIS ---
 
 const fftSize = 4096
 const minFrequency = 82
@@ -52,6 +55,8 @@ export function analyseMic(stream: MediaStream, onResult: (frequency: number, cl
     detect()
 }
 
+// --- POST ANALYSIS MATH ---
+
 export function freqToNote(frequency: number): string {
     const midi = 69 + 12 * Math.log2(frequency / 440) // A4 -> 440Hz (standard), midi note 69 is A4, 12 semitones in an octave. hope the numbers make sense for whoever is reading ts
     const midiNote = Math.round(midi) 
@@ -70,3 +75,27 @@ export function freqToCents(frequency: number): number {
 
     return Math.round((midi - nearestMidi) * 100) // 100 cents = 1 semitone
 }
+
+export function midiToNoteName(midi: number) {
+    const noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+
+    const name = noteNames[midi % 12]
+    const octave = Math.floor(midi / 12) - 1
+
+    return `${name}${octave}`
+}
+
+export function riffNoteToNoteName(note: RiffNote) {
+    const openStringMidi: Record<GuitarString, number> = {
+        6: 40, //E2
+        5: 45, //A2
+        4: 50, //D3
+        3: 55, //G3
+        2: 59, //B3
+        1: 64, //E4
+    }
+
+    const midi = openStringMidi[note.string] + note.fret
+    return midiToNoteName(midi)
+}
+

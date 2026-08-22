@@ -19,27 +19,7 @@ export type Riff = {
 
 export type DetectedNoteEvent = {
     note: string    
-    timestampMs: number
     cents: number
-}
-
-export type NoteResult = 'perfect' | 'early' | 'late' | 'wrong' | 'missed'
-
-export type AttemptAnalysis = {
-    overallAccuracy: number
-    weakestMeasure: number
-    measures: {
-        measure: number
-        score: number
-        notes: {
-            expectedNote: string
-            playedNote: string
-            expectedTime: number
-            playedTime: number
-            timingError: number
-            result: NoteResult
-        }
-    }
 }
 
 export const riffs: Riff[] = [
@@ -47,100 +27,100 @@ export const riffs: Riff[] = [
         id: 'beginner-riff',
         title: 'BEGINNER RIFF',
         difficulty: 'BEGINNER',
-        bpm: 90,
+        bpm: 45,
         beatsPerMeasure: 4,
         notes: [
-            { string: 6, fret: 0, gapBeats: 2 },
-            { string: 6, fret: 0, gapBeats: 2 },
-            { string: 6, fret: 3, gapBeats: 2 },
-            { string: 6, fret: 5, gapBeats: 4},
-            { string: 6, fret: 0, gapBeats: 2 },
-            { string: 6, fret: 0, gapBeats: 2 },
-            { string: 6, fret: 5, gapBeats: 2 },
-            { string: 6, fret: 4, gapBeats: 4}
+            { string: 6, fret: 1, gapBeats: 1 },
+            { string: 6, fret: 1, gapBeats: 1 },
+            { string: 6, fret: 3, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 2},
+            { string: 6, fret: 1, gapBeats: 1 },
+            { string: 6, fret: 1, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 2}
         ]
     },
     {
         id: 'song-578',
-        title: 'Song 578',
+        title: 'SONG 578',
         difficulty: 'ADVANCED',
-        bpm: 120,
+        bpm: 240,
         beatsPerMeasure: 4,
         notes: [
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 5, fret: 5, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 5, fret: 7, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.5 },
-            { string: 5, fret: 8, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 5, fret: 5, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 5, fret: 7, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 2 },
+            { string: 5, fret: 8, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
 
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 8, gapBeats: 0.25 },
-            { string: 6, fret: 7, gapBeats: 0.25 },
-            { string: 6, fret: 5, gapBeats: 0.5 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 8, gapBeats: 1 },
+            { string: 6, fret: 7, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 2 },
 
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 5, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 7, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 8, gapBeats: 0.5 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 7, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 8, gapBeats: 2 },
 
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 5, fret: 5, gapBeats: 0.25 },
-            { string: 5, fret: 7, gapBeats: 0.25 },
-            { string: 5, fret: 8, gapBeats: 0.5 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 5, fret: 5, gapBeats: 1 },
+            { string: 5, fret: 7, gapBeats: 1 },
+            { string: 5, fret: 8, gapBeats: 2 },
 
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 0.25 },
-            { string: 6, fret: 8, gapBeats: 0.25 },
-            { string: 6, fret: 7, gapBeats: 0.25 },
-            { string: 6, fret: 5, gapBeats: 0.25 },
-            { string: 6, fret: 0, gapBeats: 1.5 }
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 1 },
+            { string: 6, fret: 8, gapBeats: 1 },
+            { string: 6, fret: 7, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 1 },
+            { string: 6, fret: 0, gapBeats: 6 }
         ]
     }, 
     {
         id: 'phygrian-waltz',
-        title: 'Phygrian Waltz',
+        title: 'PHYGRIAN WALTZ',
         difficulty: 'INTERMEDIATE',
-        bpm: 100,
+        bpm: 200,
         beatsPerMeasure: 3,
         notes: [
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 5, fret: 6, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 5, fret: 6, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 5, fret: 6, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 5, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 5, fret: 6, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 5, fret: 6, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 5, fret: 6, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
 
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 5, fret: 6, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 5, fret: 6, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 5, fret: 6, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 },
-            { string: 6, fret: 5, gapBeats: 0.5 },
-            { string: 6, fret: 4, gapBeats: 0.5 }
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 5, fret: 6, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 5, fret: 6, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 5, fret: 6, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 },
+            { string: 6, fret: 5, gapBeats: 1 },
+            { string: 6, fret: 4, gapBeats: 1 }
         ]
     },
     {
         id: 'raag-bhopali',
-        title: 'Raag Bhopaali',
+        title: 'RAAG BHOPALI',
         difficulty: 'ADVANCED',
         bpm: 120,
         beatsPerMeasure: 4,

@@ -4,6 +4,7 @@ import Footer from './Footer'
 import Practice from './Practice'
 import hero from './assets/hero.png'
 import packageJson from '../package.json'
+import callToActionBg from './assets/callToActionBg.png'
 import { useState } from 'react'
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <img src="/favicon.svg" alt="RIFFSTORM" width="70px" height="70px" />
         RIFFSTORM
         <div className='navLinks'>
+          <a onClick={() => setWindow('home')}>HOME</a>
           <a onClick={() => setWindow('tuner')}>TUNER</a>
           <a>SETTINGS</a>
           <button onClick={() => setWindow('practice')}>PRACTICE NOW</button>
@@ -41,7 +43,7 @@ function App() {
           </h1>
           <p className='heroSubtitle'>Turn your guitar into a rhythm-based practice game.</p>
           <div className='heroButtons'>
-            <button className='primaryButton'>PRACTICE NOW</button>
+            <button className='primaryButton' onClick={() => setWindow('practice')}>PRACTICE NOW</button>
             <button className='secondaryButton' onClick={() => setWindow('tuner')}>OPEN TUNER</button>
           </div>
         </div>
@@ -99,6 +101,15 @@ function App() {
             <p className='pointerSub'>On Windows Settings, go to Sound, scroll down and click on your microphone of choice. In the properties menu, make sure to turn off Audio Enhancements. This helps your guitar notes be louder.</p>
           </div>
         </div>
+      </div>
+      <div className='ctaSection'>
+            <img src={callToActionBg} width="1440px" height="566px" alt="call to action background" className='heroBg' />
+            <div className='ctaHeading'>ARE YOU READY TO TAKE YOUR SKILLS TO THE NEXT LEVEL?</div>
+            <div className='ctaSub'>The alpha is completely free. Plug in your amp or interface, click on the practice now button, and shred the living hell out of your guitar. Or you can tune your guitar first!</div>
+            <div className='ctaButtons'>
+              <button className='ctaPrimary' onClick={() => setWindow('practice')}>PRACTICE NOW</button>
+              <button className='ctaSecondary' onClick={() => setWindow('tuner')}>TUNE THY GUITAR</button>
+            </div>
       </div>
       <Footer />
     </main>

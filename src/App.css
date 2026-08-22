@@ -539,6 +539,7 @@ nav button:hover {
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    border-bottom: 2px solid #3A3A40;
 }
 
 .prerequisitesTitle {
@@ -713,21 +714,21 @@ nav button:hover {
     font-size: 14px;
 }
 
-.metadataFrameDifficultyBeginner {
+.metadataFrameDifficultyBEGINNER {
     background-color: #d5c917;
     font-family: 'JetBrains Mono', sans-serif;
     padding: 1px;
     border-radius: 3px;
 }
 
-.metadataFrameDifficultyIntermediate {
+.metadataFrameDifficultyINTERMEDIATE {
     background-color: #A12ECB;
     font-family: 'JetBrains Mono', sans-serif;
     padding: 1px;
     border-radius: 3px;
 }
 
-.metadataFrameDifficultyAdvanced {
+.metadataFrameDifficultyADVANCED {
     background-color: #FF3E3E;
     font-family: 'JetBrains Mono', sans-serif;
     padding: 1px;
@@ -748,4 +749,201 @@ nav button:hover {
 
 .gridPracticeButton:hover {
     transform: scale(1.05);
+}
+
+/* <<< CALL TO ACTION >>> */
+.ctaSection {
+    width: 100%;
+    min-height: 566px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-bottom: 2px solid #3A3A40;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctaHeading {
+    color: #fff;
+    font-size: 48px;
+    z-index: 999;
+    padding-left: 450px;
+    padding-right: 450px;
+    text-align: center;
+}
+
+.ctaSub {
+    color: #E1DFE2;
+    font-family: 'Archivo', sans-serif;
+    font-size: 18px;
+    text-align: center;
+    z-index: 999;
+    padding-top: 10px;
+    padding-left: 450px;
+    padding-right: 450px;
+}
+
+.ctaButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+}
+
+.ctaPrimary {
+    background-color: #d5c917;
+    color: #110111;
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 20px;
+    border: 3px solid #fff;
+    margin-top: 30px;
+    padding: 15px 25px;
+    cursor: pointer;
+    box-shadow: 4px 4px #110111;
+    z-index: 999;
+}
+
+.ctaPrimary:hover {
+    transform: scale(1.05);
+}
+
+.ctaSecondary {
+    background-color: #721990;
+    color: #fff;
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 20px;
+    border: 3px solid #fff;
+    margin-top: 30px;
+    padding: 15px 25px;
+    cursor: pointer;
+    box-shadow: 4px 4px #110111;
+    z-index: 999;
+}
+
+.ctaSecondary:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* <<< PRACTICERIFF >>> */
+
+.practiceRiffSongInfoHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 160px;
+    border-bottom: 2px solid #3A3A40;
+    padding: 80px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+
+.practiceRiffSongInfoHeaderLeft {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.practiceRiffSongInfoHeaderLeftTitle {
+    color: #d5c917;
+    font-size: 36px;
+}
+
+.practiceRiffSongInfoHeaderLeftPillsRow {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.practiceRiffSongInfoHeaderLeftPillGrey {
+    color: #fff;
+    background-color: #2b282c;
+    border: 1px solid #3A3A40;
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 12px;
+    padding: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 2px;
+}
+
+.practiceRiffSongInfoHeaderLeftPillPurple {
+    color: #fff;
+    background-color: #721990;
+    border: 1px solid #fff;
+    font-family: 'JetBrains Mono', sans-serif;
+    font-size: 12px;
+    padding: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 2px;
+}
+
+.practiceRiffSongInfoHeaderRight {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.practiceRiffSongInfoHeaderRightPrimaryBtn {
+    background-color: #d5c917;
+    color: #110111;
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 16px;
+    border: 3px solid #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 4px 4px #110111;
+}
+
+.practiceRiffSongInfoHeaderRightPrimaryBtn:hover {
+    transform: scale(1.05);
+}
+
+.practiceRiffSongInfoHeaderRightSecondaryBtn {
+    background-color: #721990;
+    color: #fff;
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 16px;
+    border: 3px solid #fff;
+    padding: 8px 18px;
+    cursor: pointer;
+    box-shadow: 4px 4px #110111;
+}
+
+.practiceRiffSongInfoHeaderRightSecondaryBtn:hover {
+    transform: scale(1.05);
+}
+
+.practiceRiffBg {
+    color: #110111;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.noteToPlay {
+    /* temporary div, will be removed as soon as tab display functionality is created */
+    color: #d5c917;
+    font-size: 60px;
+}
+
+.detectedNote {
+    color: #A12ECB;
+    font-size: 40px;
+}
+
+.totalNotes {
+    font-family: 'JetBrains Mono', sans-serif;
+    color: #A12ECB;
+    padding-bottom: 10px;
 }
