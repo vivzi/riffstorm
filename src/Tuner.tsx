@@ -42,8 +42,7 @@
     return (
       <main>
         <nav>
-          <img src="/favicon.svg" alt="RIFFSTORM" width="70px" height="70px" />
-          RIFFSTORM
+          <img src='./icons.svg' alt="RIFFSTORM" width="355px" height="100px" />
           <div className="navLinks">
             <a onClick={() => setWindow('home')}>HOME</a>
             <a onClick={() => setWindow('tuner')}>TUNER</a>

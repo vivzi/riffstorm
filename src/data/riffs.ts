@@ -22,6 +22,8 @@ export type DetectedNoteEvent = {
     cents: number
 }
 
+export type NoteResult = 'perfect' | 'early' | 'late' | 'missed' | 'wrong'
+
 export const riffs: Riff[] = [
     {
         id: 'beginner-riff',

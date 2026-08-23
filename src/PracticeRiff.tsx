@@ -23,11 +23,35 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
   const [score, setScore] = useState(0)
   const [practiceStatus, setPracticeStatus] = useState<'inactive' | 'practicing' | 'finished' | 'stopped'>('inactive')
   const [noteToPlayIndex, setNoteToPlayIndex] = useState(-1)
+  const [countdown, setCountdown] = useState<number | null>(null)
 
   const noteToPlayIndexRef = useRef(-1)
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null) // thanks qwen for this one
 
   const currentNote = practiceStatus === 'practicing' ? riff.notes[noteToPlayIndex]: undefined
+
+  useEffect(() => {
+    if (countdown === null) return
+    
+    if (countdown === 0) {
+      setCountdown(null)
+      setNoteToPlayIndex(0)
+      noteToPlayIndexRef.current = 0
+      setPracticeStatus('practicing')
+      return
+    }
+
+    const countdownTimer = setTimeout(() => {
+      setCountdown((previousCountdown) => {
+        if (previousCountdown === null) return null
+        return previousCountdown - 1
+      })
+    }, 1000)
+
+    return () => {
+      clearTimeout(countdownTimer)
+    }
+  }, [countdown])
 
   useEffect(() => {
     if (practiceStatus !== 'practicing') return
@@ -43,10 +67,12 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
 
         setFrequency(freq)
         setCents(freqToCents(freq))
+
         if (freq === 0) { 
           setDetectedNote('--')
           return
         }
+
         setDetectedNote(freqToNote(freq))
 
         if (debounceRef.current) return
@@ -99,8 +125,9 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     return <Practice />
   }
 
-  
   function startPractice() {
+    if (countdown !== null) return
+    
     if (debounceRef.current) {
       clearTimeout(debounceRef.current)
       debounceRef.current = null
@@ -113,9 +140,12 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     setFrequency(0)
     setDetectedNote('--')
     setCents(0)
+    setCountdown(5)
   }
   
   function stopPractice() {
+    setCountdown(null)
+
     if (debounceRef.current) {
       clearTimeout(debounceRef.current)
       debounceRef.current = null
@@ -132,13 +162,12 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
   return (
     <main>
       <nav>
-        <img src="./favicon.svg" width='70px' height='70px'/>
-        RIFFSTORM
+        <img src='./icons.svg' alt="RIFFSTORM" width="355px" height="100px" />
         <div className='navLinks'>
           <a onClick={() => setWindow('home')}>HOME</a>
           <a onClick={() => setWindow('tuner')}>TUNER</a>
           <a>SETTINGS</a>
-          <button>PRACTICE NOW</button>
+          <button onClick={() => setWindow('practice')}>BACK TO SELECT</button>
         </div>
       </nav>
       <div className='practiceRiffSongInfoHeader'>
@@ -156,6 +185,17 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
       </div>
       <div className='practiceRiffBg'>
         <TabDisplay riff={riff} currentNoteIndex={noteToPlayIndex} isPlaying={practiceStatus === 'practicing'}  />
+        {countdown !== null && (
+          <div className='countdownOverlay'>
+            <div className='countdownNumber'>
+              {countdown}
+            </div>
+
+            <div className='countdownText'>
+              GET READY, PLAY FRET {riff.notes[0].fret} ON STRING {riff.notes[0].string}
+            </div>
+          </div>
+        )}
       </div>
       <div className='practiceRiffPerformancePanel'>
         <div className='performancePanelStat'>
