@@ -3,9 +3,9 @@ import App from './App.tsx'
 import Tuner from './Tuner.tsx'
 import Practice from './Practice.tsx'
 import Footer from './Footer.tsx'
-import { type Riff } from './data/riffs.ts'
+import { type NoteResult, type Riff } from './data/riffs.ts'
 import { analyseMic, freqToCents, freqToNote, riffNoteToNoteName } from './analyseMic.ts'
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import TabDisplay from './TabDisplay.tsx'
 import Settings from './Settings.tsx'
 
@@ -13,9 +13,22 @@ type PracticeRiffProps = {
   riff: Riff
 }
 
+type NoteCandidate = {
+  index: number
+  differenceMs: number
+  distanceMs: number
+  expectedNote: string
+}
+
+const RESULT_POINTS: Record<NoteResult, number> = {
+  perfect: 100,
+  early: 50,
+  late: 50,
+  wrong: 25,
+  missed: 0,
+}
 
 function PracticeRiff({ riff }: PracticeRiffProps) {
-
   const [window, setWindow] = useState('practiceRiff')
 
   const [frequency, setFrequency] = useState(0)
@@ -23,21 +36,30 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
   const [cents, setCents] = useState(0)
   const [score, setScore] = useState(0)
   const [practiceStatus, setPracticeStatus] = useState<'inactive' | 'practicing' | 'finished' | 'stopped'>('inactive')
-  const [noteToPlayIndex, setNoteToPlayIndex] = useState(-1)
+  const [currentNoteIndex, setCurrentNoteIndex] = useState(-1)
   const [countdown, setCountdown] = useState<number | null>(null)
 
-  const noteToPlayIndexRef = useRef(-1)
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null) // thanks qwen for this one
+  const currentNoteIndexRef = useRef(-1)
+  const timelineTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const practiceStartTimeRef = useRef<number | null>(null)
+  const targetTimesRef = useRef<number[]>([])
+  const classifiedNotesRef = useRef<Set<number>>(new Set())
+  const lastDetectedNoteRef = useRef<string | null>(null)
+  const sessionActiveRef = useRef(false)
 
-  const currentNote = practiceStatus === 'practicing' ? riff.notes[noteToPlayIndex]: undefined
+  const currentNote = practiceStatus === 'practicing'
+    ? riff.notes[currentNoteIndex]
+    : undefined
 
   useEffect(() => {
     if (countdown === null) return
-    
+
     if (countdown === 0) {
       setCountdown(null)
-      setNoteToPlayIndex(0)
-      noteToPlayIndexRef.current = 0
+      setCurrentNoteIndex(0)
+      currentNoteIndexRef.current = 0
+      practiceStartTimeRef.current = performance.now()
+      sessionActiveRef.current = true
       setPracticeStatus('practicing')
       return
     }
@@ -49,71 +71,196 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
       })
     }, 1000)
 
-    return () => {
-      clearTimeout(countdownTimer)
-    }
+    return () => clearTimeout(countdownTimer)
   }, [countdown])
 
   useEffect(() => {
     if (practiceStatus !== 'practicing') return
 
+    const msPerBeat = 60_000 / riff.bpm
+    let elapsedMs = 0
+    const targetTimes = riff.notes.map((note) => {
+      const targetTime = elapsedMs
+      elapsedMs += note.gapBeats * msPerBeat
+      return targetTime
+    })
+
+    targetTimesRef.current = targetTimes
+    classifiedNotesRef.current = new Set()
+    lastDetectedNoteRef.current = null
+
+    const perfectWindowMs = Math.max(30, Math.min(100, msPerBeat * 0.12))
+    const judgementWindowMs = Math.min(350, msPerBeat * 0.5)
+
+    const sessionStart = practiceStartTimeRef.current ?? performance.now()
+    practiceStartTimeRef.current = sessionStart
+    sessionActiveRef.current = true
+
+    const classifyNote = (
+      index: number,
+      result: NoteResult,
+      playedNote: string | null,
+      differenceMs: number,
+    ) => {
+      if (classifiedNotesRef.current.has(index)) return
+
+      classifiedNotesRef.current.add(index)
+      const expectedNote = riffNoteToNoteName(riff.notes[index])
+      const timing = differenceMs === 0
+        ? 'on time'
+        : `${differenceMs > 0 ? '+' : ''}${differenceMs.toFixed(0)} ms`
+
+      console.log(
+        `[${riff.title}] note ${index + 1}/${riff.notes.length}: ${result}`,
+        {
+          expected: expectedNote,
+          played: playedNote ?? '--',
+          timing,
+        },
+      )
+
+      const points = RESULT_POINTS[result]
+      if (points > 0) {
+        setScore((previousScore) => previousScore + points)
+      }
+    }
+
+    const updateTimeline = () => {
+      if (!sessionActiveRef.current) return
+
+      const elapsedMs = performance.now() - sessionStart
+
+      let nextCurrentIndex = 0
+      for (let index = 1; index < targetTimes.length; index += 1) {
+        if (targetTimes[index] <= elapsedMs) {
+          nextCurrentIndex = index
+        } else {
+          break
+        }
+      }
+
+      if (nextCurrentIndex !== currentNoteIndexRef.current) {
+        currentNoteIndexRef.current = nextCurrentIndex
+        setCurrentNoteIndex(nextCurrentIndex)
+      }
+
+      targetTimes.forEach((targetTime, index) => {
+        if (
+          elapsedMs >= targetTime + judgementWindowMs &&
+          !classifiedNotesRef.current.has(index)
+        ) {
+          classifyNote(index, 'missed', null, elapsedMs - targetTime)
+        }
+      })
+
+      const lastTargetTime = targetTimes[targetTimes.length - 1] ?? 0
+      if (elapsedMs >= lastTargetTime + judgementWindowMs) {
+        sessionActiveRef.current = false
+        if (timelineTimerRef.current) {
+          clearInterval(timelineTimerRef.current)
+          timelineTimerRef.current = null
+        }
+        setCurrentNoteIndex(-1)
+        currentNoteIndexRef.current = -1
+        setPracticeStatus('finished')
+        console.log(`[${riff.title}] practice finished`)
+      }
+    }
+
+    updateTimeline()
+    timelineTimerRef.current = setInterval(updateTimeline, 20)
+
     let stream: MediaStream | undefined
+    let cancelled = false
 
-    navigator.mediaDevices.getUserMedia({audio: true, video: false}).then(newStream => {
-      stream = newStream
-      analyseMic(stream, (freq, _clarity) => {
-        const detected = freqToNote(freq)
-        const index = noteToPlayIndexRef.current
-        const currentNote = riff.notes[index]
-
-        setFrequency(freq)
-        setCents(freqToCents(freq))
-
-        if (freq === 0) { 
-          setDetectedNote('--')
+    navigator.mediaDevices
+      .getUserMedia({ audio: true, video: false })
+      .then((newStream) => {
+        if (cancelled || !sessionActiveRef.current) {
+          newStream.getTracks().forEach((track) => track.stop())
           return
         }
 
-        setDetectedNote(freqToNote(freq))
+        stream = newStream
 
-        if (debounceRef.current) return
-        
-        console.log(riffNoteToNoteName(currentNote))
+        analyseMic(newStream, (freq) => {
+          if (cancelled || !sessionActiveRef.current) return
 
-        if (currentNote && detected === riffNoteToNoteName(currentNote)) {
-          if (!riff.notes[index + 1]) {
-            setPracticeStatus('finished')
-            console.log('practice finished!')
-            
+          setFrequency(freq)
+          setCents(freqToCents(freq))
+
+          if (freq === 0) {
+            setDetectedNote('--')
+            lastDetectedNoteRef.current = null
             return
           }
-          
-          setScore(prevScore => prevScore + 100)
 
-          const msPerBeat = 60_000 / riff.bpm
-          const gapDuration = currentNote.gapBeats * msPerBeat
+          const detected = freqToNote(freq)
+          setDetectedNote(detected)
 
-          debounceRef.current = setTimeout(() => {
-              setNoteToPlayIndex(index + 1)
-              noteToPlayIndexRef.current = index + 1
-              debounceRef.current = null
-          }, gapDuration)
-          
+          if (detected === lastDetectedNoteRef.current) return
+          lastDetectedNoteRef.current = detected
+
+          const elapsedMs = performance.now() - sessionStart
+          const candidates: NoteCandidate[] = riff.notes
+            .map((note, index) => {
+              const differenceMs = elapsedMs - targetTimes[index]
+              return {
+                index,
+                differenceMs,
+                distanceMs: Math.abs(differenceMs),
+                expectedNote: riffNoteToNoteName(note),
+              }
+            })
+            .filter((candidate) => (
+              !classifiedNotesRef.current.has(candidate.index) &&
+              candidate.distanceMs <= judgementWindowMs
+            ))
+
+          const matchingCandidate = candidates
+            .filter((candidate) => candidate.expectedNote === detected)
+            .sort((a, b) => a.distanceMs - b.distanceMs)[0]
+
+          const candidate = matchingCandidate ?? candidates
+            .sort((a, b) => a.distanceMs - b.distanceMs)[0]
+
+          if (!candidate) return
+
+          const expectedNote = riffNoteToNoteName(riff.notes[candidate.index])
+          const result: NoteResult = detected !== expectedNote
+            ? 'wrong'
+            : Math.abs(candidate.differenceMs) <= perfectWindowMs
+              ? 'perfect'
+              : candidate.differenceMs < 0
+                ? 'early'
+                : 'late'
+
+          classifyNote(
+            candidate.index,
+            result,
+            detected,
+            candidate.differenceMs,
+          )
+        })
+      })
+      .catch(() => {
+        if (!cancelled) {
+          sessionActiveRef.current = false
+          setPracticeStatus('inactive')
+          alert('Microphone permission is required.')
         }
       })
-    }).catch(() => {
-      setPracticeStatus('inactive')
-      alert('Microphone permission is required.')
-    })
 
     return () => {
-      if (practiceStatus !== 'practicing')
-        stream?.getTracks().forEach((track) => track.stop())
+      cancelled = true
+      sessionActiveRef.current = false
 
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current)
-        debounceRef.current = null
+      if (timelineTimerRef.current) {
+        clearInterval(timelineTimerRef.current)
+        timelineTimerRef.current = null
       }
+
+      stream?.getTracks().forEach((track) => track.stop())
     }
   }, [practiceStatus, riff])
 
@@ -129,38 +276,45 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
 
   function startPractice() {
     if (countdown !== null) return
-    
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current)
-      debounceRef.current = null
+
+    if (timelineTimerRef.current) {
+      clearInterval(timelineTimerRef.current)
+      timelineTimerRef.current = null
     }
 
-    setNoteToPlayIndex(0)
-    noteToPlayIndexRef.current = 0
-    setPracticeStatus('practicing')
+    sessionActiveRef.current = false
+    classifiedNotesRef.current = new Set()
+    targetTimesRef.current = []
+    practiceStartTimeRef.current = null
+    currentNoteIndexRef.current = -1
+
+    setCurrentNoteIndex(-1)
+    setPracticeStatus('inactive')
     setScore(0)
     setFrequency(0)
     setDetectedNote('--')
     setCents(0)
     setCountdown(5)
   }
-  
+
   function stopPractice() {
     setCountdown(null)
+    sessionActiveRef.current = false
+    practiceStartTimeRef.current = null
 
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current)
-      debounceRef.current = null
+    if (timelineTimerRef.current) {
+      clearInterval(timelineTimerRef.current)
+      timelineTimerRef.current = null
     }
 
-    setNoteToPlayIndex(-1)
-    noteToPlayIndexRef.current = -1
+    setCurrentNoteIndex(-1)
+    currentNoteIndexRef.current = -1
     setPracticeStatus('stopped')
     setFrequency(0)
     setDetectedNote('--')
     setCents(0)
   }
-      
+
   return (
     <main>
       <nav>
@@ -186,13 +340,14 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
         </div>
       </div>
       <div className='practiceRiffBg'>
-        <TabDisplay riff={riff} currentNoteIndex={noteToPlayIndex} isPlaying={practiceStatus === 'practicing'}  />
+        <TabDisplay
+          riff={riff}
+          currentNoteIndex={currentNoteIndex}
+          isPlaying={practiceStatus === 'practicing'}
+        />
         {countdown !== null && (
           <div className='countdownOverlay'>
-            <div className='countdownNumber'>
-              {countdown}
-            </div>
-
+            <div className='countdownNumber'>{countdown}</div>
             <div className='countdownText'>
               GET READY, PLAY FRET {riff.notes[0].fret} ON STRING {riff.notes[0].string}
             </div>
@@ -202,7 +357,9 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
       <div className='practiceRiffPerformancePanel'>
         <div className='performancePanelStat'>
           <div className='performancePanelStatLabel'>NOTE TO PLAY</div>
-          <div className='performancePanelStateNoteToPlay'>{currentNote ? riffNoteToNoteName(currentNote) : '--'}</div>
+          <div className='performancePanelStateNoteToPlay'>
+            {currentNote ? riffNoteToNoteName(currentNote) : '--'}
+          </div>
         </div>
         <div className='performancePanelStat'>
           <div className='performancePanelStatLabel'>NOTE DETECTED</div>
@@ -221,6 +378,5 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     </main>
   )
 }
-
 
 export default PracticeRiff
