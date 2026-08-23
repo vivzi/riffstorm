@@ -8,6 +8,7 @@ import { analyseMic, freqToCents, freqToNote, riffNoteToNoteName } from './analy
 import { useEffect, useRef, useState } from 'react'
 import TabDisplay from './TabDisplay.tsx'
 import Settings from './Settings.tsx'
+import AttemptAnalysis, { type AttemptNoteResult } from './AttemptAnalysis.tsx'
 
 type PracticeRiffProps = {
   riff: Riff
@@ -38,6 +39,7 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
   const [practiceStatus, setPracticeStatus] = useState<'inactive' | 'practicing' | 'finished' | 'stopped'>('inactive')
   const [currentNoteIndex, setCurrentNoteIndex] = useState(-1)
   const [countdown, setCountdown] = useState<number | null>(null)
+  const [noteResults, setNoteResults] = useState<AttemptNoteResult[]>([])
 
   const currentNoteIndexRef = useRef(-1)
   const timelineTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -118,6 +120,16 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
           timing,
         },
       )
+
+      setNoteResults((previousResults) => [
+        ...previousResults,
+        {
+          index,
+          result,
+          differenceMs,
+          playedNote,
+        },
+      ])
 
       const points = RESULT_POINTS[result]
       if (points > 0) {
@@ -291,6 +303,7 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     setCurrentNoteIndex(-1)
     setPracticeStatus('inactive')
     setScore(0)
+    setNoteResults([])
     setFrequency(0)
     setDetectedNote('--')
     setCents(0)
@@ -313,6 +326,10 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     setFrequency(0)
     setDetectedNote('--')
     setCents(0)
+  }
+
+  function selectAnotherRiff() {
+    setWindow('practice')
   }
 
   return (
@@ -339,41 +356,52 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
           <button className='practiceRiffSongInfoHeaderRightSecondaryBtn' onClick={stopPractice}>STOP</button>
         </div>
       </div>
-      <div className='practiceRiffBg'>
-        <TabDisplay
+      {practiceStatus === 'finished' ? (
+        <AttemptAnalysis
           riff={riff}
-          currentNoteIndex={currentNoteIndex}
-          isPlaying={practiceStatus === 'practicing'}
+          noteResults={noteResults}
+          onSelectAnotherRiff={selectAnotherRiff}
+          onRestart={startPractice}
         />
-        {countdown !== null && (
-          <div className='countdownOverlay'>
-            <div className='countdownNumber'>{countdown}</div>
-            <div className='countdownText'>
-              GET READY, PLAY FRET {riff.notes[0].fret} ON STRING {riff.notes[0].string}
+      ) : (
+        <>
+          <div className='practiceRiffBg'>
+            <TabDisplay
+              riff={riff}
+              currentNoteIndex={currentNoteIndex}
+              isPlaying={practiceStatus === 'practicing'}
+            />
+            {countdown !== null && (
+              <div className='countdownOverlay'>
+                <div className='countdownNumber'>{countdown}</div>
+                <div className='countdownText'>
+                  GET READY, PLAY FRET {riff.notes[0].fret} ON STRING {riff.notes[0].string}
+                </div>
+              </div>
+            )}
+          </div>
+          <div className='practiceRiffPerformancePanel'>
+            <div className='performancePanelStat'>
+              <div className='performancePanelStatLabel'>NOTE TO PLAY</div>
+              <div className='performancePanelStateNoteToPlay'>
+                {currentNote ? riffNoteToNoteName(currentNote) : '--'}
+              </div>
+            </div>
+            <div className='performancePanelStat'>
+              <div className='performancePanelStatLabel'>NOTE DETECTED</div>
+              <div className='performancePanelStateDetectedNote'>{detectedNote}</div>
+            </div>
+            <div className='performancePanelStat'>
+              <div className='performancePanelStatLabel'>SCORE</div>
+              <div className='performancePanelStateScore'>{score}</div>
+            </div>
+            <div className='performancePanelStat'>
+              <div className='performancePanelStatLabel'>TOTAL NOTES</div>
+              <div className='perFormancePanelStateTotalNotes'>{riff.notes.length}</div>
             </div>
           </div>
-        )}
-      </div>
-      <div className='practiceRiffPerformancePanel'>
-        <div className='performancePanelStat'>
-          <div className='performancePanelStatLabel'>NOTE TO PLAY</div>
-          <div className='performancePanelStateNoteToPlay'>
-            {currentNote ? riffNoteToNoteName(currentNote) : '--'}
-          </div>
-        </div>
-        <div className='performancePanelStat'>
-          <div className='performancePanelStatLabel'>NOTE DETECTED</div>
-          <div className='performancePanelStateDetectedNote'>{detectedNote}</div>
-        </div>
-        <div className='performancePanelStat'>
-          <div className='performancePanelStatLabel'>SCORE</div>
-          <div className='performancePanelStateScore'>{score}</div>
-        </div>
-        <div className='performancePanelStat'>
-          <div className='performancePanelStatLabel'>TOTAL NOTES</div>
-          <div className='perFormancePanelStateTotalNotes'>{riff.notes.length}</div>
-        </div>
-      </div>
+        </>
+      )}
       <Footer />
     </main>
   )

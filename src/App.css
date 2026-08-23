@@ -37,7 +37,7 @@ nav {
 
 nav a {
     color: #fff;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     cursor: pointer;
 }
@@ -86,7 +86,7 @@ nav button:hover {
 
 .footerSub {
     color: #E1DFE2;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
 }
 
@@ -97,7 +97,7 @@ nav button:hover {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     gap: 10px;
 }
@@ -236,13 +236,13 @@ nav button:hover {
     font-size: clamp(11px, 1vw, 14px);
     letter-spacing: 2px;
     color: #d5c917;
-    font-family: 'Jetbrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
 }
 
 .headerTag {
     border: 2px solid #ffffff;
     padding: 5px 10px;
-    font-family: 'Jetbrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     color: #fff;
     background-color: #721990;
@@ -372,7 +372,7 @@ nav button:hover {
 
 .contentRiffBPM {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #fff;
     margin: 0;
     margin-top: 10px;
@@ -381,7 +381,7 @@ nav button:hover {
 
 .contentRiffTuneCheck {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #A12ECB;
     margin: 0;
     margin-top: 5px;
@@ -401,7 +401,7 @@ nav button:hover {
 
 .contentProgressLabel {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #E1DFE2;
     margin: 0;
     margin-top: 5px;
@@ -411,7 +411,7 @@ nav button:hover {
 
 .contentProgressValue {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #d5c917;
     margin: 0;
     margin-top: 5px;
@@ -436,7 +436,7 @@ nav button:hover {
 
 .contentRatingLabel {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #E1DFE2;
     margin: 0;
     margin-top: 5px;
@@ -446,7 +446,7 @@ nav button:hover {
 
 .contentRatingValue {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #E1DFE2;
     margin: 0;
     margin-top: 5px;
@@ -470,7 +470,7 @@ nav button:hover {
 
 .contentAccuracyLabel {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #E1DFE2;
     margin: 0;
     margin-top: 5px;
@@ -480,7 +480,7 @@ nav button:hover {
 
 .contentAccuracyValue {
     position: relative;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #A12ECB;
     margin: 0;
     margin-top: 5px;
@@ -521,7 +521,7 @@ nav button:hover {
 }
 
 .descriptionPointer {
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #d5c917;
     font-size: 13px;
     border: 2px solid #721990;
@@ -579,7 +579,7 @@ nav button:hover {
 }
 
 .tunerCents {
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 16px;
 }
 
@@ -596,7 +596,7 @@ nav button:hover {
 .tabBarSection a {
     position: relative;
     color: #fff;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     padding-left: 20px;
     padding-right: 20px;
     text-decoration: none;
@@ -704,33 +704,33 @@ nav button:hover {
 
 .metadataFrameLabel {
     color: #fff;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
 }
 
 .metadataFrameBPM {
     color: #fff;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
 }
 
 .metadataFrameDifficultyBEGINNER {
     background-color: #d5c917;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     padding: 1px;
     border-radius: 3px;
 }
 
 .metadataFrameDifficultyINTERMEDIATE {
     background-color: #A12ECB;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     padding: 1px;
     border-radius: 3px;
 }
 
 .metadataFrameDifficultyADVANCED {
     background-color: #FF3E3E;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     padding: 1px;
     border-radius: 3px;
 }
@@ -862,7 +862,7 @@ nav button:hover {
     color: #fff;
     background-color: #2b282c;
     border: 1px solid #3A3A40;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     padding: 5px;
     padding-top: 3px;
@@ -874,7 +874,7 @@ nav button:hover {
     color: #fff;
     background-color: #721990;
     border: 1px solid #fff;
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     padding: 5px;
     padding-top: 3px;
@@ -1014,7 +1014,7 @@ nav button:hover {
 }
 
 .totalNotes {
-    font-family: 'JetBrains Mono', sans-serif;
+    font-family: 'JetBrains Mono', monospace;
     color: #A12ECB;
     padding-bottom: 10px;
 }
@@ -1114,7 +1114,7 @@ nav button:hover {
   padding: 3px 5px;
   color: #110111;
   background: #d5c917;
-  font-family: 'JetBrains Mono', sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
   white-space: nowrap;
   transform: translateX(-50%);
@@ -1228,4 +1228,789 @@ input[type="range"]::-moz-range-track {
     font-size: 14px;
     color: #E1DFE2;
     padding-bottom: 20px;
+}
+
+/* <<< ATTEMPT ANALYSIS >>> */
+
+.attemptAnalysis {
+    width: 100%;
+    border-bottom: 2px solid #3A3A40;
+    background-color: #110111;
+}
+
+.attemptAnalysisContent {
+    width: min(1120px, calc(100% - 112px));
+    min-height: 518px;
+    margin: 0 auto;
+    padding: 30px 0 22px;
+}
+
+.attemptAnalysisStats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+}
+
+.attemptAnalysisStat {
+    min-height: 112px;
+    padding: 18px 16px 14px;
+    border: 2px solid #fff;
+    background-color: #2b282c;
+}
+
+.attemptAnalysisStatLabel,
+.attemptAnalysisHighlightLabel {
+    display: block;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+.attemptAnalysisStatValue {
+    display: inline-block;
+    margin-top: 14px;
+    color: #fff;
+    font-size: 42px;
+    line-height: 0.9;
+}
+
+.attemptAnalysisStatValueGold,
+.attemptAnalysisHighlightValueGold {
+    color: #d5c917;
+}
+
+.attemptAnalysisStatInline {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.attemptAnalysisStatInline .attemptAnalysisStatValue {
+    margin-top: 14px;
+}
+
+.attemptAnalysisStatSuffix {
+    color: #E1DFE2;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+}
+
+.attemptAnalysisMeasures {
+    margin-top: 24px;
+}
+
+.attemptAnalysisSectionHeading {
+    width: fit-content;
+    padding: 5px 9px;
+    color: #fff;
+    background-color: #721990;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.4px;
+}
+
+.attemptAnalysisDescription {
+    margin: 8px 0 12px;
+    color: #E1DFE2;
+    font-family: 'Archivo', sans-serif;
+    font-size: 11px;
+}
+
+.attemptAnalysisMeasureList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.attemptAnalysisMeasure {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 40px;
+    align-items: center;
+    gap: 12px;
+    min-height: 28px;
+    padding: 5px 10px;
+    border: 1px solid #3A3A40;
+    border-radius: 3px;
+    background-color: #2b282c;
+}
+
+.attemptAnalysisMeasureLabel,
+.attemptAnalysisMeasureValue {
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+}
+
+.attemptAnalysisMeasureValue {
+    color: #d5c917;
+    text-align: right;
+}
+
+.attemptAnalysisMeasureTrack {
+    height: 8px;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: #464148;
+}
+
+.attemptAnalysisMeasureFill {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background-color: #d5c917;
+    transition: width 500ms ease-out;
+}
+
+.attemptAnalysisMeasureFill.isPurple {
+    background-color: #A12ECB;
+}
+
+.attemptAnalysisHighlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 22px;
+}
+
+.attemptAnalysisHighlight {
+    min-height: 94px;
+    padding: 17px 16px;
+    border: 2px solid #fff;
+    background-color: #2b282c;
+}
+
+.attemptAnalysisHighlightValue {
+    display: block;
+    margin-top: 14px;
+    color: #fff;
+    font-size: 30px;
+    line-height: 0.95;
+}
+
+.attemptAnalysisActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.attemptAnalysisAction {
+    min-height: 28px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-family: 'Gasoek One', sans-serif;
+    font-size: 10px;
+}
+
+.attemptAnalysisAction:hover {
+    transform: scale(1.05);
+}
+
+.attemptAnalysisActionPrimary {
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #721990;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.attemptAnalysisActionSecondary {
+    border: 2px solid #fff;
+    color: #fff;
+    background-color: transparent;
+}
+
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 760px) {
+    .attemptAnalysisContent {
+        width: min(100% - 32px, 540px);
+        padding-top: 20px;
+    }
+
+    .attemptAnalysisStats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .attemptAnalysisStatValue {
+        font-size: clamp(28px, 8vw, 42px);
+    }
+
+    .attemptAnalysisHighlights {
+        gap: 12px;
+    }
+
+    .attemptAnalysisHighlightValue {
+        font-size: clamp(20px, 6vw, 30px);
+    }
+}
+
+/* <<< RESPONSIVE PRACTICE LAYOUT >>> */
+
+html,
+body {
+    overflow-x: hidden;
+}
+
+nav {
+    height: auto;
+    min-height: 100px;
+    padding: clamp(14px, 2vw, 20px);
+}
+
+nav > img {
+    width: min(355px, 31vw);
+    height: auto;
+    flex: 0 1 355px;
+    object-fit: contain;
+}
+
+.navLinks {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: clamp(12px, 3vw, 40px);
+    padding-right: clamp(0px, 4vw, 60px);
+}
+
+.practiceRiffSongInfoHeader {
+    height: auto;
+    min-height: 160px;
+    padding: clamp(24px, 3.2vw, 32px) clamp(20px, 6vw, 80px);
+    gap: clamp(20px, 4vw, 48px);
+}
+
+.practiceRiffSongInfoHeaderLeft,
+.practiceRiffSongInfoHeaderRight {
+    min-width: 0;
+}
+
+.practiceRiffSongInfoHeaderLeftTitle {
+    font-size: clamp(26px, 3.5vw, 36px);
+    overflow-wrap: anywhere;
+}
+
+.practiceRiffSongInfoHeaderLeftPillsRow {
+    flex-wrap: wrap;
+}
+
+.practiceRiffSongInfoHeaderRightPrimaryBtn,
+.practiceRiffSongInfoHeaderRightSecondaryBtn {
+    font-size: clamp(12px, 1.6vw, 16px);
+    white-space: nowrap;
+}
+
+.practiceRiffBg {
+    height: clamp(280px, 36vw, 400px);
+    padding: clamp(12px, 2vw, 20px);
+}
+
+.tabDisplay {
+    width: min(1280px, 100%);
+    height: clamp(248px, 31vw, 320px);
+    padding: clamp(12px, 2vw, 18px) clamp(14px, 3vw, 32px);
+}
+
+.tabStrings {
+    height: 150px;
+    margin-top: clamp(38px, 6vw, 65px);
+}
+
+.tabNotesLayer {
+    left: clamp(8%, 10vw, 12%);
+    right: clamp(8%, 10vw, 12%);
+}
+
+.practiceRiffPerformancePanel {
+    height: auto;
+    min-height: 112px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.performancePanelStat {
+    min-width: 0;
+    padding-inline: clamp(16px, 4vw, 60px);
+}
+
+.performancePanelStatLabel {
+    font-size: clamp(10px, 1.2vw, 12px);
+}
+
+.performancePanelStateNoteToPlay,
+.performancePanelStateDetectedNote,
+.performancePanelStateScore,
+.perFormancePanelStateTotalNotes {
+    font-size: clamp(22px, 2.7vw, 28px);
+}
+
+.attemptAnalysisContent {
+    width: min(1120px, calc(100% - clamp(32px, 8.75vw, 112px)));
+}
+
+.attemptAnalysisStats,
+.attemptAnalysisHighlights {
+    gap: clamp(12px, 2.2vw, 28px);
+}
+
+.attemptAnalysisStatValue {
+    font-size: clamp(28px, 3.5vw, 42px);
+}
+
+.attemptAnalysisHighlightValue {
+    font-size: clamp(24px, 2.5vw, 30px);
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+    nav > img {
+        width: min(300px, 32vw);
+    }
+
+    .navLinks {
+        gap: clamp(10px, 2vw, 24px);
+    }
+
+    .attemptAnalysisStats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    nav {
+        align-items: center;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+
+    nav > img {
+        width: min(240px, 62vw);
+        flex-basis: auto;
+    }
+
+    .navLinks {
+        flex-basis: 100%;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        padding-right: 0;
+    }
+
+    nav a {
+        font-size: clamp(10px, 2.2vw, 14px);
+    }
+
+    nav button {
+        font-size: clamp(11px, 2.8vw, 16px);
+        padding: 8px 12px;
+    }
+
+    .practiceRiffSongInfoHeader {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+    }
+
+    .practiceRiffSongInfoHeaderLeft,
+    .practiceRiffSongInfoHeaderRight {
+        width: 100%;
+    }
+
+    .practiceRiffSongInfoHeaderRight {
+        justify-content: flex-start;
+    }
+
+    .practiceRiffBg {
+        padding-inline: 10px;
+    }
+
+    .practiceRiffPerformancePanel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .performancePanelStat {
+        min-height: 78px;
+        padding-block: 12px;
+    }
+
+    .performancePanelStat:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .performancePanelStat:nth-child(-n + 2) {
+        border-bottom: 2px solid #3A3A40;
+    }
+
+    .attemptAnalysisContent {
+        width: calc(100% - 32px);
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 14px 12px;
+    }
+
+    nav > img {
+        width: min(200px, 58vw);
+    }
+
+    .navLinks {
+        gap: 6px;
+    }
+
+    nav button {
+        padding: 7px 9px;
+    }
+
+    .practiceRiffSongInfoHeader {
+        padding-inline: 16px;
+    }
+
+    .practiceRiffSongInfoHeaderLeftPillGrey,
+    .practiceRiffSongInfoHeaderLeftPillPurple {
+        font-size: 10px;
+    }
+
+    .practiceRiffSongInfoHeaderRight {
+        gap: 10px;
+    }
+
+    .practiceRiffSongInfoHeaderRightPrimaryBtn,
+    .practiceRiffSongInfoHeaderRightSecondaryBtn {
+        flex: 1 1 0;
+        padding-inline: 10px;
+    }
+
+    .tabDisplay {
+        height: 248px;
+        padding-inline: 10px;
+    }
+
+    .tabStrings {
+        margin-top: 38px;
+    }
+
+    .stringName {
+        width: 28px;
+        flex-basis: 28px;
+        font-size: 11px;
+    }
+
+    .tabNote {
+        width: 22px;
+        height: 22px;
+        font-size: 13px;
+    }
+
+    .tabPageIndicator {
+        font-size: 10px;
+    }
+
+    .attemptAnalysisStats {
+        gap: 10px;
+    }
+
+    .attemptAnalysisStat {
+        min-height: 100px;
+        padding: 14px 12px;
+    }
+
+    .attemptAnalysisStatLabel,
+    .attemptAnalysisHighlightLabel,
+    .attemptAnalysisMeasureLabel,
+    .attemptAnalysisMeasureValue {
+        font-size: 9px;
+    }
+
+    .attemptAnalysisStatValue {
+        margin-top: 12px;
+        font-size: clamp(24px, 8vw, 34px);
+    }
+
+    .attemptAnalysisStatSuffix {
+        font-size: 11px;
+    }
+
+    .attemptAnalysisMeasure {
+        grid-template-columns: 34px minmax(0, 1fr) 34px;
+        gap: 7px;
+        padding-inline: 7px;
+    }
+
+    .attemptAnalysisHighlights {
+        gap: 10px;
+    }
+
+    .attemptAnalysisHighlight {
+        min-height: 88px;
+        padding: 14px 12px;
+    }
+
+    .attemptAnalysisHighlightValue {
+        margin-top: 12px;
+        font-size: clamp(18px, 6vw, 25px);
+    }
+
+    .attemptAnalysisActions {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 22px;
+    }
+
+    .attemptAnalysisAction {
+        flex: 1 1 auto;
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 360px) {
+    .practiceRiffPerformancePanel {
+        grid-template-columns: 1fr;
+    }
+
+    .performancePanelStat {
+        border-right: 0;
+        border-bottom: 2px solid #3A3A40;
+    }
+
+    .performancePanelStat:last-child {
+        border-bottom: 0;
+    }
+
+    .navLinks {
+        align-items: stretch;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .navLinks a,
+    .navLinks button {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+
+    .attemptAnalysisStats,
+    .attemptAnalysisHighlights {
+        grid-template-columns: 1fr;
+    }
+
+    .attemptAnalysisStat,
+    .attemptAnalysisHighlight {
+        min-height: 86px;
+    }
+
+    .attemptAnalysisStatValue,
+    .attemptAnalysisHighlightValue {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .attemptAnalysisContent {
+        width: min(1220px, calc(100% - 160px));
+    }
+
+    .attemptAnalysisStatValue {
+        font-size: 46px;
+    }
+}
+
+@media (max-width: 620px) {
+    .footer {
+        min-height: 210px;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .footerLeft,
+    .footerRight {
+        width: 100%;
+        padding-inline: 20px;
+    }
+
+    .footerLeft {
+        padding-bottom: 12px;
+    }
+
+    .footerRight {
+        justify-content: flex-start;
+        padding-top: 12px;
+        padding-bottom: 20px;
+    }
+}
+
+/* <<< RESPONSIVE RIFF SELECTION >>> */
+
+.songPracticeSelection {
+    width: 100%;
+    height: auto;
+    min-height: clamp(620px, 68vh, 876px);
+    padding: clamp(32px, 7vw, 100px) clamp(16px, 5vw, 50px) 64px;
+}
+
+.gridHeader {
+    width: min(1368px, 100%);
+    margin: 0 auto;
+}
+
+.practiceTitle {
+    max-width: 100%;
+    padding-top: clamp(14px, 2vw, 20px);
+    color: #fff;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+}
+
+.gridContainer {
+    width: min(1368px, 100%);
+    height: auto;
+    margin: 0 auto;
+    padding: clamp(24px, 4vw, 50px) clamp(0px, 1.5vw, 20px) 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(20px, 4vw, 60px);
+    align-items: stretch;
+}
+
+.gridBox {
+    width: 100%;
+    min-width: 0;
+    min-height: 289px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px;
+}
+
+.gridSongNumber {
+    flex: 0 0 auto;
+}
+
+.gridSongName {
+    min-width: 0;
+    padding: 15px clamp(14px, 2vw, 20px) clamp(12px, 2vw, 20px);
+    font-size: clamp(22px, 2.2vw, 26px);
+    line-height: 1.1;
+    overflow-wrap: anywhere;
+}
+
+.metadataList {
+    padding: 0 clamp(14px, 2vw, 20px);
+}
+
+.metadataFrame {
+    min-width: 0;
+    gap: 12px;
+}
+
+.metadataFrameLabel,
+.metadataFrameBPM,
+.metadataFrameDifficultyBEGINNER,
+.metadataFrameDifficultyINTERMEDIATE,
+.metadataFrameDifficultyADVANCED {
+    font-size: clamp(11px, 1.2vw, 14px);
+}
+
+.metadataFrameLabel {
+    overflow-wrap: anywhere;
+}
+
+.gridPracticeButton {
+    align-self: flex-start;
+    width: fit-content;
+    margin: auto 14px 18px;
+    padding: 9px clamp(12px, 2vw, 20px);
+    font-size: clamp(14px, 1.6vw, 20px);
+}
+
+@media (max-width: 760px) {
+    .songPracticeSelection {
+        min-height: 0;
+        padding: 32px 16px 48px;
+    }
+
+    .gridContainer {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-top: 28px;
+    }
+
+    .gridBox {
+        min-height: 248px;
+    }
+}
+
+@media (max-width: 480px) {
+    .songPracticeSelection {
+        padding: 28px 12px 40px;
+    }
+
+    .practiceTitle {
+        font-size: clamp(24px, 8vw, 32px);
+    }
+
+    .gridContainer {
+        gap: 16px;
+        padding-top: 22px;
+    }
+
+    .gridBox {
+        min-height: 232px;
+    }
+
+    .gridSongNumber {
+        font-size: 16px;
+        padding-inline: 8px;
+    }
+
+    .gridSongName {
+        padding-top: 13px;
+        font-size: clamp(19px, 6vw, 24px);
+    }
+
+    .metadataList {
+        padding-inline: 12px;
+    }
+
+    .metadataFrame {
+        height: 28px;
+    }
+
+    .metadataFrameLabel,
+    .metadataFrameBPM,
+    .metadataFrameDifficultyBEGINNER,
+    .metadataFrameDifficultyINTERMEDIATE,
+    .metadataFrameDifficultyADVANCED {
+        font-size: 10px;
+    }
+
+    .gridPracticeButton {
+        margin: auto 12px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .songPracticeSelection {
+        padding-inline: 10px;
+    }
+
+    .gridBox {
+        min-height: 220px;
+    }
+
+    .gridSongName {
+        font-size: 20px;
+    }
 }
