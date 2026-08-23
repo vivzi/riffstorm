@@ -1,9 +1,10 @@
-  import './App.css'
-  import App from './App.tsx'
-  import Practice from './Practice.tsx'
-  import { useState, useEffect } from 'react'
-  import Footer from './Footer.tsx'
-  import { analyseMic, freqToCents, freqToNote } from './analyseMic.ts'
+import './App.css'
+import App from './App.tsx'
+import Practice from './Practice.tsx'
+import { useState, useEffect } from 'react'
+import Footer from './Footer.tsx'
+import { analyseMic, freqToCents, freqToNote } from './analyseMic.ts'
+import Settings from './Settings.tsx'
 
   function Tuner() {
 
@@ -37,6 +38,10 @@
       return (
         <Practice />
       )
+    } else if (window === 'settings') {
+      return (
+        <Settings />
+      )
     }
 
     return (
@@ -46,7 +51,7 @@
           <div className="navLinks">
             <a onClick={() => setWindow('home')}>HOME</a>
             <a onClick={() => setWindow('tuner')}>TUNER</a>
-            <a>SETTINGS</a>
+            <a onClick={() => setWindow('settings')}>SETTINGS</a>
             <button onClick={() => setWindow('practice')}>PRACTICE NOW</button>
           </div>
         </nav>

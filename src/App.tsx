@@ -6,6 +6,7 @@ import hero from './assets/hero.png'
 import packageJson from '../package.json'
 import callToActionBg from './assets/callToActionBg.png'
 import { useState } from 'react'
+import Settings from './Settings.tsx'
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
     return (
       <Practice />
     )
+  } else if (window === 'settings') {
+    return (
+      <Settings />
+    )
   }
 
   return (
@@ -28,7 +33,7 @@ function App() {
         <div className='navLinks'>
           <a onClick={() => setWindow('home')}>HOME</a>
           <a onClick={() => setWindow('tuner')}>TUNER</a>
-          <a>SETTINGS</a>
+          <a onClick={() => setWindow('settings')}>SETTINGS</a>
           <button onClick={() => setWindow('practice')}>PRACTICE NOW</button>
         </div>
       </nav>

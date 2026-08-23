@@ -7,6 +7,7 @@ import { type Riff } from './data/riffs.ts'
 import { analyseMic, freqToCents, freqToNote, riffNoteToNoteName } from './analyseMic.ts'
 import { useState, useEffect, useRef } from 'react'
 import TabDisplay from './TabDisplay.tsx'
+import Settings from './Settings.tsx'
 
 type PracticeRiffProps = {
   riff: Riff
@@ -81,7 +82,6 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
 
         if (currentNote && detected === riffNoteToNoteName(currentNote)) {
           if (!riff.notes[index + 1]) {
-            setScore(prevScore => prevScore + 100)  
             setPracticeStatus('finished')
             console.log('practice finished!')
             
@@ -123,6 +123,8 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     return <Tuner />
   } else if (window === 'practice') {
     return <Practice />
+  } else if (window === 'settings') {
+    return <Settings />
   }
 
   function startPractice() {
@@ -166,7 +168,7 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
         <div className='navLinks'>
           <a onClick={() => setWindow('home')}>HOME</a>
           <a onClick={() => setWindow('tuner')}>TUNER</a>
-          <a>SETTINGS</a>
+          <a onClick={() => setWindow('settings')}>SETTINGS</a>
           <button onClick={() => setWindow('practice')}>BACK TO SELECT</button>
         </div>
       </nav>

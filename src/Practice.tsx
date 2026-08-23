@@ -5,6 +5,7 @@ import Footer from './Footer.tsx'
 import PracticeRiff from './PracticeRiff.tsx'
 import { riffs } from './data/riffs.ts'
 import { useState } from 'react'
+import Settings from './Settings.tsx'
 
 function Practice() {
     const [window, setWindow] = useState('practice')
@@ -12,6 +13,7 @@ function Practice() {
 
     if (window === 'home') return <App />
     if (window === 'tuner') return <Tuner />
+    if (window === 'settings') return <Settings />
 
     if (selectedRiffId) {
         const riff = riffs.find(r => r.id === selectedRiffId)!
@@ -25,7 +27,7 @@ function Practice() {
                 <div className='navLinks'>
                     <a onClick={() => setWindow('home')}>HOME</a>
                     <a onClick={() => setWindow('tuner')}>TUNER</a>
-                    <a>SETTINGS</a>
+                    <a onClick={() => setWindow('settings')}>SETTINGS</a>
                     <button onClick={() => setWindow('practice')}>PRACTICE NOW</button>
                 </div>
             </nav>

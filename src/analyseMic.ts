@@ -1,23 +1,21 @@
 import { PitchDetector } from 'pitchy'
 import { type GuitarString, type RiffNote } from './data/riffs'
+import { type MicSettings, defaultMicSettings, loadMicSettings } from './settings'
 
 // --- MIC ANALYSIS ---
 
-const fftSize = 4096
 const minFrequency = 82
 const maxFrequency = 1319
-const minClarity = 0.55
-const minRms = 0.04
 
 //takes stream and returns freq and clarity (when i add settings clarity is basically a noise gate which differenciates between noise and actual pitch)
-export function analyseMic(stream: MediaStream, onResult: (frequency: number, clarity: number) => void) {
+export function analyseMic(stream: MediaStream, onResult: (frequency: number, clarity: number) => void, settings: MicSettings = loadMicSettings()) {
     const audioCtx = new AudioContext()
     const srcNode = audioCtx.createMediaStreamSource(stream)
 
     const analyserNode = audioCtx.createAnalyser()
     srcNode.connect(analyserNode) // srcNode -> analyserNode -> float32 array -> pitchy hence only 2 nodes needed.
 
-    analyserNode.fftSize = fftSize
+    analyserNode.fftSize = settings.fftSize
 
     // the reason we're not using half of the fftSize (as the mdn docs suggest) is cuz we're handing the entire waveform to pitchy
     const buffer = new Float32Array(analyserNode.fftSize)
@@ -33,7 +31,7 @@ export function analyseMic(stream: MediaStream, onResult: (frequency: number, cl
 
         const rms = Math.sqrt(sum / buffer.length)
         
-        if (rms < minRms) {
+        if (rms < settings.minRms) {
             onResult(0, 0)
             requestAnimationFrame(detect)
             return
@@ -41,7 +39,7 @@ export function analyseMic(stream: MediaStream, onResult: (frequency: number, cl
 
         const [frequency, clarity] = detector.findPitch(buffer, audioCtx.sampleRate)
 
-        if (clarity < minClarity || frequency < minFrequency || frequency > maxFrequency) {
+        if (clarity < settings.minClarity || frequency < minFrequency || frequency > maxFrequency) {
             onResult(0, 0)
             requestAnimationFrame(detect)
             return
