@@ -29,6 +29,8 @@ const RESULT_POINTS: Record<NoteResult, number> = {
   missed: 0,
 }
 
+const PERFECT_WINDOW_MS = 100
+
 function PracticeRiff({ riff }: PracticeRiffProps) {
   const [window, setWindow] = useState('practiceRiff')
 
@@ -91,7 +93,6 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
     classifiedNotesRef.current = new Set()
     lastDetectedNoteRef.current = null
 
-    const perfectWindowMs = Math.max(30, Math.min(100, msPerBeat * 0.12))
     const judgementWindowMs = Math.min(350, msPerBeat * 0.5)
 
     const sessionStart = practiceStartTimeRef.current ?? performance.now()
@@ -241,7 +242,7 @@ function PracticeRiff({ riff }: PracticeRiffProps) {
           const expectedNote = riffNoteToNoteName(riff.notes[candidate.index])
           const result: NoteResult = detected !== expectedNote
             ? 'wrong'
-            : Math.abs(candidate.differenceMs) <= perfectWindowMs
+            : Math.abs(candidate.differenceMs) <= PERFECT_WINDOW_MS
               ? 'perfect'
               : candidate.differenceMs < 0
                 ? 'early'
